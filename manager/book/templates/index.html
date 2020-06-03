@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Book Manager</title>
+{% endblock %}
+
+{% block body %}
+
+<!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
+<div class="content">
+    <h1>Book Manager</h1>
+
+    <table>
+        <tr>
+            <th>Cover Page</th>
+            <th>Book Name</th>
+            <th>Book Price</th>
+            <th>Book Author</th>
+        </tr>
+        {% for b in books %}
+        <tr>
+            <td>
+                <img src="{{ url_for('book.static',filename='uploads/covers/'+b.filename)}}" width="100px" height="153px">
+            </td>
+            <td>{{b.name}}</td>
+            <td>Rs. {{b.price}}</td>
+            <td>{{b.author}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="content_form">
+    <form action='/books/' method="POST" enctype="multipart/form-data" style="margin: 10px;">
+        <input type="text" name="bookname" id="bookname" placeholder="Enter Book Name"><br>
+        <input type="text" name="price" id="price" placeholder="Enter Book Price"><br>
+        <input type="text" name="author" id="author" placeholder="Enter Book Author"><br>
+        <input type="file" name="cover_page" accept="image/*"><br>
+        <input type="submit" value="Add book">
+    </form>
+</div>
+
+{% endblock %}

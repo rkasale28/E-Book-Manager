@@ -1,0 +1,66 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+body{
+    background-image: url('../images/book_store.jpg');
+    background-attachment: fixed;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: 1500px 733px;
+}
+
+.content,.content_form {
+    margin: 10px;
+    width: 600px;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.content_form{
+    position: fixed;
+    bottom: 40%;
+    right: 3%;
+}
+
+table, td, th {
+    border: 1px solid #aaa;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    align-content: center;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+input[type="text"]{
+    width: 300px;
+}
+
+input{
+    margin-top: 5px;
+}
+
+#content {
+    width: 70%;
+}
+
+h1{
+    text-align: center;
+}
