@@ -1,6 +1,7 @@
 from flask import Blueprint,request,redirect,render_template,send_from_directory
 from flask_uploads import IMAGES, UploadSet
-from .models import Book,db
+from .models import Book
+from manager.database import db
 from flask import current_app
 
 mod=Blueprint('book',__name__,template_folder='templates',static_folder='static')
