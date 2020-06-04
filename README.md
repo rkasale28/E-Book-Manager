@@ -7,3 +7,4 @@
 - [Blueprint Documentation](https://exploreflask.com/en/latest/blueprints.html)
 - [Flask Uploads - Using Blueprints](https://stackoverflow.com/questions/49491637/flask-uploads-how-to-use-with-application-factory)
 - [Flask Scripts - Documentation](https://flask-script.readthedocs.io/en/latest/)
+- [Handling Database](https://stackoverflow.com/questions/15072013/structure-of-a-flask-app-with-more-than-one-models-py)
