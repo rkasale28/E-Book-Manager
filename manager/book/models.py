@@ -8,4 +8,9 @@ class Book(db.Model):
     filename=db.Column(db.String(100))
     
     def __repr__(self):
-        return '<Book %r>' % self.id
+        return self.name
+
+subs = db.Table('subs',
+        db.Column('book_id',db.Integer,db.ForeignKey('book.id')),
+        db.Column('user_id',db.Integer,db.ForeignKey('student.id'))
+        )

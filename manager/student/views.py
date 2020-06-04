@@ -1,6 +1,7 @@
 from flask import Blueprint,request,redirect,render_template,send_from_directory
 from flask_uploads import IMAGES, UploadSet
 from .models import Student
+from manager.book.models import Book
 from manager.database import db
 from flask import current_app
 
@@ -25,3 +26,20 @@ def index():
     else:
         students=Student.query.order_by('name').all()
         return render_template('student_index.html', students=students)
+
+@mod.route('/displayBooksList/<int:id>')
+def display(id):
+    student=Student.query.get_or_404(id)
+    books=Book.query.order_by('name').filter(~Book.subscribers.contains(student)).all()
+    return render_template('display_book_list.html',stu_id=id,books=books)
+
+@mod.route('/subscribe/<int:bk_id>/<int:st_id>',methods=['POST','GET'])
+def subscribe(bk_id,st_id):
+    book=Book.query.get_or_404(bk_id)
+    student=Student.query.get_or_404(st_id)
+    student.subscriptions.append(book)
+    try:
+        db.session.commit()
+        return redirect('/student')
+    except:
+        return 'There was an issue in subscribing'

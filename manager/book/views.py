@@ -29,7 +29,7 @@ def index():
             return e
     else:
         books=Book.query.order_by('name').all()
-        return render_template('index.html', books=books)
+        return render_template('book_index.html', books=books)
 
 @mod.route('media/covers/<filename>')
 def retrieve_cover(filename):

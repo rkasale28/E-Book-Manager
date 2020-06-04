@@ -11,10 +11,11 @@
 
     <table>
         <tr>
-            <th>Cover Page</th>
-            <th>Book Name</th>
-            <th>Book Price</th>
-            <th>Book Author</th>
+            <th width="20%">Cover Page</th>
+            <th width="20%">Book Name</th>
+            <th width="20%">Book Price</th>
+            <th width="20%">Book Author</th>
+            <th width="20%">Subscribers</th>
         </tr>
         {% for b in books %}
         <tr>
@@ -24,6 +25,11 @@
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
+            <td>
+                {% for subscriber in b.subscribers%}
+                {{subscriber}}<br>
+                {% endfor %}
+            </td>
         </tr>
         {% endfor %}
     </table>

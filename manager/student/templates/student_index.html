@@ -13,13 +13,19 @@
         <tr>
             <th>Profile Pic</th>
             <th>Student Name</th>
+            <th>Subscriptions</th>
+            <th>Subscribe</th>
         </tr>
         {% for student in students %}
         <tr>
             <td>
                 <img src="{{ url_for('student.static',filename='uploads/dps/'+student.profile_pic)}}" width="50px" height="50px" style="border-radius: 50px;object-fit:cover">
             </td>
-            <td>{{student.name}}</td>            
+            <td>{{student.name}}</td>
+            <td>{{student.subscriptions}}</td>  
+            <td>
+                <a href="/student/displayBooksList/{{student.id}}">Add</a><br>    
+            </td>                 
         </tr>
         {% endfor %}
     </table>
