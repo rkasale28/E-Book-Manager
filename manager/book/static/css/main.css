@@ -14,12 +14,16 @@ body{
 
 .content,.content_form {
     margin: 10px;
-    width: 600px;
+    width: 700px;
     background-color: #fff;
     padding: 10px;
 }
 
 .content_form{
+    margin: 10px;
+    width: 500px;
+    background-color: #fff;
+    padding: 10px;
     position: fixed;
     bottom: 40%;
     right: 3%;

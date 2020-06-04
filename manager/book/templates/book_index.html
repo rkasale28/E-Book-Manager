@@ -25,9 +25,9 @@
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
-            <td>
+            <td style="text-align: left;">
                 {% for subscriber in b.subscribers%}
-                {{subscriber}}<br>
+                <div style="margin-left:5px">{{subscriber}}</div><br>
                 {% endfor %}
             </td>
         </tr>

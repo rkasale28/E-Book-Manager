@@ -5,7 +5,7 @@
 
 {% block body %} 
 <div class="content" style="margin:auto;">
-    <h1>Subscribe Book</h1>
+    <h1>Subscriptions</h1>
 
     <table>
         <tr>
@@ -13,7 +13,6 @@
             <th width="25%">Name</th>
             <th width="20%">Price</th>
             <th width="20%">Author</th>
-            <th width="15%">Subscribe</th>
         </tr>
         {% for b in books %}
         <tr>
@@ -23,9 +22,6 @@
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
-            <td>
-                <a href="/student/subscribe/{{b.id}}/{{stu_id}}">Subscribe</a>
-            </td>
         </tr>
         {% endfor %}
     </table>

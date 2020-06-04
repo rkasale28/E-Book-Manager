@@ -26,6 +26,11 @@ def index():
     else:
         students=Student.query.order_by('name').all()
         return render_template('student_index.html', students=students)
+@mod.route('/view/<int:id>')
+def view(id):
+    student=Student.query.get_or_404(id)
+    books=Book.query.order_by('name').filter(Book.subscribers.contains(student)).all()
+    return render_template('view_subscriptions.html',stu_id=id,books=books)
 
 @mod.route('/displayBooksList/<int:id>')
 def display(id):
