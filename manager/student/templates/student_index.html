@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Student Manager</title>
+{% endblock %}
+
+{% block body %}
+
+<!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
+<div class="content">
+    <h1>Student Manager</h1>
+
+    <table>
+        <tr>
+            <th>Profile Pic</th>
+            <th>Student Name</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>
+                <img src="{{ url_for('student.static',filename='uploads/dps/'+student.profile_pic)}}" width="50px" height="50px" style="border-radius: 50px;object-fit:cover">
+            </td>
+            <td>{{student.name}}</td>            
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div class="content_form">
+    <form action='/student/' method="POST" enctype="multipart/form-data" style="margin: 10px;">
+        <input type="text" name="studentname" id="studentname" placeholder="Enter Student Name"><br>
+        <input type="file" name="profile_pic" accept="image/*"><br>
+        <input type="submit" value="Add student">
+    </form>
+</div>
+
+{% endblock %}
