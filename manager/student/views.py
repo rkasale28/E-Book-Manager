@@ -4,7 +4,8 @@ from .models import Student
 from manager.book.models import Book
 from manager.database import db,Role,user_datastore,User
 from flask import current_app
-from flask_security.utils import hash_password,verify_password,login_user
+from flask_security.utils import hash_password,verify_password,login_user,logout_user
+from flask_security import current_user,login_required
 
 mod=Blueprint('student',__name__,template_folder='templates',static_folder='static')
 
@@ -49,6 +50,7 @@ def login():
         
 
 @mod.route('/',methods=['POST','GET'])
+@login_required
 def index():
     if request.method=='POST':
         student_name=request.form['studentname']
@@ -66,25 +68,25 @@ def index():
         students=Student.query.order_by('name').all()
         return render_template('student_index.html', students=students)
 
-@mod.route('/view/<int:id>')
-def view(id):
-    student=Student.query.get_or_404(id)
-    books=Book.query.order_by('name').filter(Book.subscribers.contains(student)).all()
-    return render_template('view_subscriptions.html',stu_id=id,books=books)
+@mod.route('/displayBooksList')
+@login_required
+def display():
+    books=Book.query.order_by('name').filter(~Book.subscribers.contains(current_user.student)).all()
+    return render_template('display_book_list.html',books=books)
 
-@mod.route('/displayBooksList/<int:id>')
-def display(id):
-    student=Student.query.get_or_404(id)
-    books=Book.query.order_by('name').filter(~Book.subscribers.contains(student)).all()
-    return render_template('display_book_list.html',stu_id=id,books=books)
-
-@mod.route('/subscribe/<int:bk_id>/<int:st_id>',methods=['POST','GET'])
-def subscribe(bk_id,st_id):
+@mod.route('/subscribe/<int:bk_id>',methods=['POST','GET'])
+@login_required
+def subscribe(bk_id):
     book=Book.query.get_or_404(bk_id)
-    student=Student.query.get_or_404(st_id)
-    student.subscriptions.append(book)
+    current_user.student.subscriptions.append(book)
     try:
         db.session.commit()
         return redirect('/student')
     except:
         return 'There was an issue in subscribing'
+
+@mod.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/student/login')

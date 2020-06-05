@@ -4,6 +4,7 @@ from .models import Book
 from manager.database import db,User
 from flask import current_app
 from flask_security.utils import hash_password,verify_password,login_user,logout_user
+from flask_security import login_required
 
 mod=Blueprint('book',__name__,template_folder='templates',static_folder='static')
 

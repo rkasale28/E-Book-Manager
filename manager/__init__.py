@@ -21,6 +21,7 @@ def create_app():
     app.config['USER_ENABLED_EMAIL']=False
     app.config['SECURITY_PASSWORD_SALT']='ROHIT'
     app.config['SECRET_KEY']='ROHIT'
+    app.config['SECURITY_LOGIN_USER_TEMPLATE']='login.html'
     db.init_app(app)
     migrate.init_app(app, db)
     

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block head %}
-<title>Task Master</title>
+<title>Subscribe Book</title>
 {% endblock %}
 
 {% block body %} 
@@ -24,7 +24,7 @@
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
             <td>
-                <a href="/student/subscribe/{{b.id}}/{{stu_id}}">Subscribe</a>
+                <a href="/student/subscribe/{{b.id}}">Subscribe</a>
             </td>
         </tr>
         {% endfor %}

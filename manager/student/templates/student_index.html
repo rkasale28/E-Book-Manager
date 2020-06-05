@@ -1,12 +1,45 @@
 {% extends 'base.html' %}
 {% block head %}
 <title>Home Page</title>
+<style>
+    ul {
+        list-style-type: none;
+        margin-left: auto;
+        padding: 0;
+        overflow: hidden;
+        background-color: #fff;
+        position: fixed;
+        right: 0px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111;
+        color: white;
+    }
+</style>
+
 {% endblock %}
 
 {% block body %}
+<ul>
+    <li><a href="/student/logout">Logout</a></li>
+    <li><a href="/student/displayBooksList">Subscribe</a></li>
+</ul>
 
 <!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
-<div class="content">
+<div class="content" style="border-radius: 10px;">
     <h1> My Subscriptions</h1>
 
     <table>
@@ -19,9 +52,22 @@
             </tr>
         </thead>
         <tbody>
-            {{current_user.student.subscriptions}}
+            {% for b in current_user.student.subscriptions %}
+            <tr>
+                <td>
+                    <img src="{{ url_for('book.static',filename='uploads/covers/'+b.filename)}}" width="100px" height="153px">
+                </td>
+                <td>{{b.name}}</td>
+                <td>Rs. {{b.price}}</td>
+                <td>{{b.author}}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
+</div>
+<div class="content_form" style="border-radius: 10px;width:400px">
+    <img src="{{ url_for('student.static',filename='uploads/dps/'+current_user.student.profile_pic)}}" width="50px" height="50px" style="border-radius: 50px;object-fit:cover">
+    <h2 style="margin-bottom: 0px;">{{current_user.student}}</h2>
 </div>
 
 {% endblock %}

@@ -57,10 +57,8 @@
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
-            <td style="text-align: left;">
-                {% for subscriber in b.subscribers%}
-                <div style="margin-left:5px">{{subscriber}}</div><br>
-                {% endfor %}
+            <td>
+                {{b.subscribers.count()}}
             </td>
         </tr>
         {% endfor %}
