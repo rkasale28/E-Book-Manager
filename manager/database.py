@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
     role_id = db.Column(db.Integer,db.ForeignKey('role.id'))
+    student_id = db.Column(db.Integer,db.ForeignKey('student.id'))
     
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
