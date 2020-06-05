@@ -19,7 +19,8 @@ def create_app():
     app.config['UPLOADED_COVERS_DEST']='manager/book/static/uploads/covers'
     app.config['UPLOADED_DPS_DEST']='manager/student/static/uploads/dps'
     app.config['USER_ENABLED_EMAIL']=False
-
+    app.config['SECURITY_PASSWORD_SALT']='ROHIT'
+    app.config['SECRET_KEY']='ROHIT'
     db.init_app(app)
     migrate.init_app(app, db)
     

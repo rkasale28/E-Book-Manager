@@ -18,9 +18,11 @@
 <!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
 <div class="signup">
     <h2>Sign Up Form</h2>
-    <form action='/student/signup/' method="POST" enctype="multipart/form-data" style="margin: 10px;">
+    <form action='signup' method="POST" enctype="multipart/form-data" style="margin: 10px;">
+        <input type="text" name="studentname" id="studentname" placeholder="Enter Student Name"><br>
         <input type="text" name="username" id="username" placeholder="Enter Username"><br>
         <input type="password" name="pwd" id="pwd" placeholder="Enter Password" size="46px"><br>
+        <input type="file" name="profile_pic" accept="image/*"><br>
         <input type="submit" value="Sign Up">
     </form>
 </div>
