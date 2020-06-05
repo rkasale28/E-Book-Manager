@@ -10,8 +10,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(10), unique=True)
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
-    role_id=db.Column(db.Integer,db.ForeignKey('role.id'))
-
+    role_id = db.Column(db.Integer,db.ForeignKey('role.id'))
+    
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
