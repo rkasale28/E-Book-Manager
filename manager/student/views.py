@@ -9,7 +9,15 @@ mod=Blueprint('student',__name__,template_folder='templates',static_folder='stat
 
 dps=UploadSet('dps',IMAGES)
 
-@mod.route('/',methods=['POST','GET'])
+@mod.route('/login')
+def login():
+    return render_template('login.html')
+
+@mod.route('/signup')
+def signup():
+    return render_template('signup.html')
+
+@mod.route('/homepage',methods=['POST','GET'])
 def index():
     if request.method=='POST':
         student_name=request.form['studentname']
@@ -26,6 +34,7 @@ def index():
     else:
         students=Student.query.order_by('name').all()
         return render_template('student_index.html', students=students)
+
 @mod.route('/view/<int:id>')
 def view(id):
     student=Student.query.get_or_404(id)
