@@ -12,5 +12,5 @@
   - [Overall](https://pythonhosted.org/Flask-Security/)
   - [Configuration](https://pythonhosted.org/Flask-Security/configuration.html)
   - [Customizing Views](https://pythonhosted.org/Flask-Security/customizing.html)
-  - [API] (https://flask-security.readthedocs.io/en/latest/api.html)
-  - [Tutorial] (https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login)
+  - [API](https://flask-security.readthedocs.io/en/latest/api.html)
+  - [Tutorial](https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login)
