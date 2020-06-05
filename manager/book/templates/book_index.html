@@ -1,9 +1,40 @@
 {% extends 'base.html' %}
 {% block head %}
 <title>Book Manager</title>
+<style>
+    ul {
+        list-style-type: none;
+        margin-left: auto;
+        padding: 0;
+        overflow: hidden;
+        background-color: #fff;
+        position: fixed;
+        right: 0px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #111;
+        color: white;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
+<ul>
+    <li><a href="/books/logout">Logout</a></li>
+</ul>
 
 <!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
 <div class="content">
@@ -20,7 +51,8 @@
         {% for b in books %}
         <tr>
             <td>
-                <img src="{{ url_for('book.static',filename='uploads/covers/'+b.filename)}}" width="100px" height="153px">
+                <img src="{{ url_for('book.static',filename='uploads/covers/'+b.filename)}}" width="100px"
+                    height="153px">
             </td>
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>

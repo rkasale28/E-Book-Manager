@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Login</title>
+<style>
+    .login {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 150px;
+        width: 600px;
+        background-color: #fff;
+        padding: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<!-- <img src="{{ url_for('static',filename='images/book_store.jpg') }}" width="200px"> -->
+<div class="login">
+    <h2>Login Form</h2>
+    <form action="/books/login" method="POST" enctype="multipart/form-data" style="margin: 10px;">
+        <input type="text" name="username" id="username" placeholder="Enter Username"><br>
+        <input type="password" name="pwd" id="pwd" placeholder="Enter Password" size="46px"><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <div style="padding-bottom: 10px;">
+        <h4 style="margin-bottom: 0px;">Don't have an account?</h4>
+        <a href="/student/signup">Register</a>
+    </div>
+</div>
+
+{% endblock %}

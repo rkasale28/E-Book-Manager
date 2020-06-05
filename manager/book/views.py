@@ -1,12 +1,29 @@
 from flask import Blueprint,request,redirect,render_template,send_from_directory
 from flask_uploads import IMAGES, UploadSet
 from .models import Book
-from manager.database import db
+from manager.database import db,User
 from flask import current_app
+from flask_security.utils import hash_password,verify_password,login_user,logout_user
 
 mod=Blueprint('book',__name__,template_folder='templates',static_folder='static')
 
 covers=UploadSet('covers',IMAGES)
+
+@mod.route('/login',methods=['POST','GET'])
+def login():
+    if request.method=='POST':
+        username=request.form['username']
+        pwd=request.form['pwd']
+        
+        user = User.query.filter_by(username=username).first()
+        
+        if not user or not (user.roles[0].name=='Admin') or not verify_password(pwd,user.password):
+            return redirect('/books/login') # if user doesn't exist or password is wrong, reload the page
+        else: 
+            login_user(user)
+            return redirect('/books/')
+    else:
+        return render_template('admin_login.html')
 
 @mod.route('/',methods=['POST','GET'])
 def index():
@@ -31,6 +48,7 @@ def index():
         books=Book.query.order_by('name').all()
         return render_template('book_index.html', books=books)
 
-@mod.route('media/covers/<filename>')
-def retrieve_cover(filename):
-    return send_from_directory(current_app.config['UPLOADED_COVERS_DEST'],filename)
+@mod.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/books/login')
