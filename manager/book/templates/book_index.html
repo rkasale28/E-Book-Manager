@@ -44,9 +44,10 @@
         <tr>
             <th width="20%">Cover Page</th>
             <th width="20%">Book Name</th>
-            <th width="20%">Book Price</th>
+            <th width="10%">Book Price</th>
             <th width="20%">Book Author</th>
-            <th width="20%">Subscribers</th>
+            <th width="15%">Subscribers</th>
+            <th width="15%">Options</th>
         </tr>
         {% for b in books %}
         <tr>
@@ -57,8 +58,10 @@
             <td>{{b.name}}</td>
             <td>Rs. {{b.price}}</td>
             <td>{{b.author}}</td>
+            <td>{{b.subscribers.count()}}</td>
             <td>
-                {{b.subscribers.count()}}
+                <a href="update/{{b.id}}">Update</a><br><br>
+                <a href="delete/{{b.id}}">Delete</a>
             </td>
         </tr>
         {% endfor %}

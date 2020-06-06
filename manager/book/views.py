@@ -49,6 +49,36 @@ def index():
         books=Book.query.order_by('name').all()
         return render_template('book_index.html', books=books)
 
+@mod.route('/delete/<int:id>')
+def delete(id):
+    book_to_delete = Book.query.get_or_404(id)
+
+    try:
+        db.session.delete(book_to_delete)
+        db.session.commit()
+        return redirect('/books')
+    except:
+        return 'There was an issue deleting this book'
+
+@mod.route('/update/<int:id>',methods=['POST','GET'])
+def update(id):
+    book=Book.query.get_or_404(id)
+    if request.method=='POST':
+        book.name=request.form['name']
+        book.price=request.form['price']
+
+        if request.files['cover_page']:
+            cover_page=request.files['cover_page']
+            book.filename=covers.save(cover_page)
+            
+        try:
+            db.session.commit()
+            return redirect('/books')
+        except:
+            return 'There was an issue updating your book'
+    else:
+        return render_template('update.html',book=book)
+
 @mod.route('/logout')
 def logout():
     logout_user()
